@@ -1,4 +1,4 @@
-from transformers import BertModel
+from transformers import LlamaModel
 import torch
 import torch.nn as nn
 
@@ -8,7 +8,7 @@ class Basic_Bert_Unit_model(nn.Module):
         super(Basic_Bert_Unit_model,self).__init__()
         self.result_size = result_size
         self.input_size = input_size
-        self.bert_model = BertModel.from_pretrained('bert-base-multilingual-cased')
+        self.bert_model = LlamaModel.from_pretrained('../llama')
         self.out_linear_layer = nn.Linear(self.input_size,self.result_size)
         self.dropout = nn.Dropout(p = 0.1)
 
