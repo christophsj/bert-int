@@ -58,7 +58,7 @@ def main():
         print("train ILL & test ILL:", len(set(train_ill) & set(test_ill)))
 
     Criterion = nn.MarginRankingLoss(MARGIN,size_average=True)
-    Optimizer = AdamW(Model.parameters(),lr=LEARNING_RATE)
+    Optimizer: nn = AdamW(Model.parameters(),lr=LEARNING_RATE)
 
     ent1 = [e1 for e1,e2 in ent_ill]
     ent2 = [e2 for e1,e2 in ent_ill]

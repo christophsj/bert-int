@@ -1,4 +1,5 @@
 from transformers import BertModel
+from transformers.modeling_outputs import BaseModelOutputWithPoolingAndCrossAttentions
 import torch
 import torch.nn as nn
 
@@ -15,8 +16,12 @@ class Basic_Bert_Unit_model(nn.Module):
 
 
     def forward(self,batch_word_list,attention_mask):
-        x = self.bert_model(input_ids = batch_word_list,attention_mask = attention_mask)#token_type_ids =token_type_ids
-        sequence_output, pooled_output = x
+        x: BaseModelOutputWithPoolingAndCrossAttentions = self.bert_model(input_ids = batch_word_list,attention_mask = attention_mask)#token_type_ids =token_type_ids
+        # sequence_output, pooled_output = x
+        sequence_output = x.last_hidden_state
+        # pooled_output = x.pooler_output
+        
+        
         cls_vec = sequence_output[:,0]
         output = self.dropout(cls_vec)
         output = self.out_linear_layer(output)

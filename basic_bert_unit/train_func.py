@@ -5,6 +5,7 @@ from Param import *
 import numpy as np
 import time
 import pickle
+from Batch_TrainData_Generator import Batch_TrainData_Generator
 from eval_function import cos_sim_mat_generate,batch_topk,hit_res
 
 def entlist2emb(Model,entids,entid2data,cuda_num):
@@ -29,13 +30,13 @@ def entlist2emb(Model,entids,entid2data,cuda_num):
     return batch_emb
 
 
-def generate_candidate_dict(Model,train_ent1s,train_ent2s,for_candidate_ent1s,for_candidate_ent2s,
-                                entid2data,index2entity,
+def generate_candidate_dict(Model: nn.Module,train_ent1s: list[int],train_ent2s: list[int],for_candidate_ent1s: list[int],for_candidate_ent2s: list[int],
+                                entid2data: dict[int, list[list[int]]],
                                 nearest_sample_num = NEAREST_SAMPLE_NUM, batch_size = CANDIDATE_GENERATOR_BATCH_SIZE):
     start_time = time.time()
     Model.eval()
     torch.cuda.empty_cache()
-    candidate_dict = dict()
+    candidate_dict: dict[int, list[int]] = dict()
     with torch.no_grad():
         #langauge1 (KG1)
         train_emb1 = []
@@ -97,7 +98,7 @@ def generate_candidate_dict(Model,train_ent1s,train_ent2s,for_candidate_ent1s,fo
 
 
 
-def train(Model,Criterion,Optimizer,Train_gene,train_ill,test_ill,entid2data):
+def train(Model: nn.Module,Criterion: nn.MarginRankingLoss,Optimizer: torch.optim.Optimizer,Train_gene: Batch_TrainData_Generator,train_ill: list[tuple[int, int]],test_ill: list[tuple[int, int]],entid2data: dict[int, list[list[int]]]):
     print("start training...")
     for epoch in range(EPOCH_NUM):
         print("+++++++++++")
@@ -112,7 +113,7 @@ def train(Model,Criterion,Optimizer,Train_gene,train_ill,test_ill,entid2data):
         print("train ent1s num: {} train ent2s num: {} for_Candidate_ent1s num: {} for_candidate_ent2s num: {}"
               .format(len(train_ent1s),len(train_ent2s),len(for_candidate_ent1s),len(for_candidate_ent2s)))
         candidate_dict = generate_candidate_dict(Model,train_ent1s,train_ent2s,for_candidate_ent1s,
-                                                     for_candidate_ent2s,entid2data,Train_gene.index2entity)
+                                                     for_candidate_ent2s,entid2data)
         Train_gene.train_index_gene(candidate_dict) #generate training data with candidate_dict
 
         #train
@@ -168,7 +169,7 @@ def save(Model,train_ill,test_ill,entid2data,epoch_num):
 
 
 
-def ent_align_train(Model,Criterion,Optimizer,Train_gene,entid2data):
+def ent_align_train(Model : nn.Module,Criterion: nn.MarginRankingLoss,Optimizer: torch.optim.Optimizer,Train_gene: Batch_TrainData_Generator,entid2data: dict[int, list[list[int]]]) -> tuple[float, float]:
     start_time = time.time()
     all_loss = 0
     Model.train()
