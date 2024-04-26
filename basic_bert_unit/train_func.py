@@ -1,12 +1,12 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from Param import *
+from basic_bert_unit.Param import *
 import numpy as np
 import time
 import pickle
-from Batch_TrainData_Generator import Batch_TrainData_Generator
-from eval_function import cos_sim_mat_generate,batch_topk,hit_res
+from basic_bert_unit.Batch_TrainData_Generator import Batch_TrainData_Generator
+from basic_bert_unit.eval_function import cos_sim_mat_generate,batch_topk,hit_res
 
 def entlist2emb(Model,entids,entid2data,cuda_num):
     """

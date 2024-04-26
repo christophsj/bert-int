@@ -1,16 +1,18 @@
 import os
 import pickle
 import logging
+
+from utils.utils import batch_topk, cos_sim_mat_generate, fixed, neigh_ent_dict_gene, test_topk_res
 logging.basicConfig(level=logging.ERROR)
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import time
-from read_data_func import read_structure_datas
-from Param import *
-from utils import *
-from dual_aggregation_func import *
+from interaction_model.read_data_func import read_structure_datas
+from interaction_model.Param import *
+from utils.utils import *
+from interaction_model.dual_aggregation_func import *
 
 
 
@@ -190,6 +192,6 @@ def main():
     
 
 
-if __name__ == '__main__':
+def get_neighView_and_desView_interaction_feature():
     fixed(SEED_NUM)
     main()

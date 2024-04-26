@@ -1,7 +1,7 @@
 import numpy as np
 import torch
 import torch.nn as nn
-from Param import *
+from basic_bert_unit.Param import *
 import time
 
 

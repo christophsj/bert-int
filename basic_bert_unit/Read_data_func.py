@@ -1,11 +1,11 @@
 import pickle
-from transformers import LlamaTokenizer
 import logging
-from Param import *
+from basic_bert_unit.Param import *
 import pickle
 import numpy as np
 import re
 import random
+from utils.utils import get_tokenizer
 logging.getLogger("transformers.tokenization_utils").setLevel(logging.DEBUG)
 
 
@@ -141,7 +141,7 @@ def read_data(data_path = DATA_PATH,des_dict_path = DES_DICT_PATH):
     entids = list(range(len(index2entity)))
 
     #ent2descriptionTokens
-    Tokenizer = LlamaTokenizer.from_pretrained('../llama')
+    Tokenizer = get_tokenizer()
     if des_dict_path!= None:
         ent2desTokens = ent2desTokens_generate(Tokenizer,des_dict_path,[index2entity[id] for id in entid_1],[index2entity[id] for id in entid_2])
     else:

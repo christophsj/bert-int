@@ -33,8 +33,8 @@ http://dbpedia.org/resource/ŠK_Slovan_Bratislava        no      29
 """
 import os
 import copy
-from Param import *
-from utils import fixed
+from interaction_model.Param import *
+from utils.utils import fixed
 
 
 def read_att_data(data_path):
@@ -131,7 +131,7 @@ def remove_one_to_N_att_data_by_threshold(ori_keep_data,ori_remove_data,one2N_th
     return keep_datas,remove_datas
 
 
-if __name__ == '__main__':
+def run_clean_attribute_data():
     fixed(SEED_NUM)
     print("----------------clean attribute data--------------------")
     print("Start removing noise from attribute triples")
