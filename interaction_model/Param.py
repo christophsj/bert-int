@@ -16,6 +16,7 @@ MARGIN = 1 # margin
 EPOCH_NUM = 200 # train epoch num
 
 INTERACTION_MODEL_SAVE_PATH = "../Save_model/interaction_model_{}en.bin".format(LANG) #interaction model save path.
+LLAMA_MODEL_PATH = "../llama"
 
 #load model(base_bert_unit_model) path
 BASIC_BERT_UNIT_MODEL_SAVE_PATH = "../Save_model/"

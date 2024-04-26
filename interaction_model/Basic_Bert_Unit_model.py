@@ -1,7 +1,9 @@
-from transformers import BertModel
+from transformers import LlamaModel
 from transformers.modeling_outputs import BaseModelOutputWithPoolingAndCrossAttentions
 import torch
 import torch.nn as nn
+
+from basic_bert_unit.utils import get_model
 
 
 class Basic_Bert_Unit_model(nn.Module):
@@ -9,7 +11,7 @@ class Basic_Bert_Unit_model(nn.Module):
         super(Basic_Bert_Unit_model,self).__init__()
         self.result_size = result_size
         self.input_size = input_size
-        self.bert_model = BertModel.from_pretrained('bert-base-multilingual-cased')
+        self.bert_model = get_model()
         self.out_linear_layer = nn.Linear(self.input_size,self.result_size)
         self.dropout = nn.Dropout(p = 0.1)
 
