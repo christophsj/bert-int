@@ -7,13 +7,13 @@ import time
 
 class Batch_TrainData_Generator(object):
     def __init__(self,train_ill,ent_ids1,ent_ids2,index2entity,batch_size,neg_num):
-        self.ent_ill = train_ill
-        self.ent_ids1 = ent_ids1
-        self.ent_ids2 = ent_ids2
-        self.batch_size = batch_size
-        self.neg_num = neg_num
-        self.iter_count = 0
-        self.index2entity = index2entity
+        self.ent_ill: list[tuple[int, int]] = train_ill
+        self.ent_ids1: list[int] = ent_ids1
+        self.ent_ids2: list[int] = ent_ids2
+        self.batch_size: int = batch_size
+        self.neg_num: int = neg_num
+        self.iter_count: int = 0
+        self.index2entity: dict[int, str] = index2entity
         print("In Batch_TrainData_Generator, train ill num: {}".format(len(self.ent_ill)))
         print("In Batch_TrainData_Generator, ent_ids1 num: {}".format(len(self.ent_ids1)))
         print("In Batch_TrainData_Generator, ent_ids2 num: {}".format(len(self.ent_ids2)))
@@ -44,7 +44,7 @@ class Batch_TrainData_Generator(object):
                 if pe1!=ne1 or pe2!=ne2:
                     train_index.append([pe1,pe2,ne1,ne2])
         np.random.shuffle(train_index)
-        self.train_index = train_index
+        self.train_index: list[int] = train_index
         self.batch_num = int( np.ceil( len(self.train_index) * 1.0 / self.batch_size ) )
 
 
