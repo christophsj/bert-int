@@ -15,17 +15,17 @@ LEARNING_RATE = 5e-4 # learning rate
 MARGIN = 1 # margin
 EPOCH_NUM = 200 # train epoch num
 
-INTERACTION_MODEL_SAVE_PATH = "../Save_model/interaction_model_{}en.bin".format(LANG) #interaction model save path.
-LLAMA_MODEL_PATH = "../llama"
+INTERACTION_MODEL_SAVE_PATH = "Save_model/interaction_model_{}en.bin".format(LANG) #interaction model save path.
+LLAMA_MODEL_PATH = "Save_model/llama"
 
 #load model(base_bert_unit_model) path
-BASIC_BERT_UNIT_MODEL_SAVE_PATH = "../Save_model/"
+BASIC_BERT_UNIT_MODEL_SAVE_PATH = "Save_model/"
 BASIC_BERT_UNIT_MODEL_SAVE_PREFIX = "DBP15K_{}en".format(LANG)
 LOAD_BASIC_BERT_UNIT_MODEL_EPOCH_NUM = 4
 BASIC_BERT_UNIT_MODEL_OUTPUT_DIM = 300
 
 #load data path
-DATA_PATH = r"../data/dbp15k/{}_en/".format(LANG)
+DATA_PATH = r"data/dbp15k/{}_en/".format(LANG)
 
 
 #candidata_save_path

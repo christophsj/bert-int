@@ -1,15 +1,17 @@
-from transformers.modeling_outputs import BaseModelOutputWithPoolingAndCrossAttentions
 from transformers import LlamaModel
+from transformers.modeling_outputs import BaseModelOutputWithPoolingAndCrossAttentions
 import torch
 import torch.nn as nn
 
+from utils.utils import get_model
 
-class Basic_Bert_Unit_model(nn.Module):
+
+class Basic_LM_Unit_model(nn.Module):
     def __init__(self,input_size,result_size):
-        super(Basic_Bert_Unit_model,self).__init__()
+        super(Basic_LM_Unit_model,self).__init__()
         self.result_size = result_size
         self.input_size = input_size
-        self.bert_model = LlamaModel.from_pretrained('../llama')
+        self.bert_model = get_model()
         self.out_linear_layer = nn.Linear(self.input_size,self.result_size)
         self.dropout = nn.Dropout(p = 0.1)
 

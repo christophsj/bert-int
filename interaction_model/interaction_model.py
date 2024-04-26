@@ -1,7 +1,9 @@
-from model_train_test_func import *
-from Param import *
+from interaction_model.model_train_test_func import *
+from interaction_model.Param import *
 
-def main():
+from utils.utils import fixed
+
+def run_interaction_model():
     print("----------------interaction model--------------------")
     cuda_num = CUDA_NUM
     print("GPU num {}".format(cuda_num))
@@ -46,4 +48,4 @@ def main():
 
 if __name__ == '__main__':
     fixed(SEED_NUM)
-    main()
+    run_interaction_model()

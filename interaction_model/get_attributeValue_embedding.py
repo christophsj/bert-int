@@ -7,14 +7,15 @@ import time
 import os
 import numpy as np
 import pickle
-from Param import *
-from read_data_func import *
+from interaction_model.Param import *
+from utils.utils import fixed
+from interaction_model.read_data_func import *
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
 from transformers import BertTokenizer
-from utils import fixed
-from Basic_Bert_Unit_model import Basic_Bert_Unit_model
+from utils.utils import fixed
+from utils.Basic_LM_Unit_model import Basic_LM_Unit_model
 
 def get_tokens_of_value(vaule_list,Tokenizer,max_length):
     #return tokens of attributeValue
@@ -57,7 +58,7 @@ def attributeValue_emb_gene(l_set,Model,Tokenizer,batch_size,cuda_num,max_length
 
 
 
-def main():
+def get_attribute_value_embedding():
     print("----------------get attribute value embedding--------------------")
     cuda_num = CUDA_NUM
     print("GPU NUM :",cuda_num)
@@ -88,7 +89,7 @@ def main():
     # load basic bert unit model
     bert_model_path = BASIC_BERT_UNIT_MODEL_SAVE_PATH + BASIC_BERT_UNIT_MODEL_SAVE_PREFIX + "model_epoch_" \
                       + str(LOAD_BASIC_BERT_UNIT_MODEL_EPOCH_NUM) + '.p'
-    Model = Basic_Bert_Unit_model(768, BASIC_BERT_UNIT_MODEL_OUTPUT_DIM)
+    Model = Basic_LM_Unit_model(768, BASIC_BERT_UNIT_MODEL_OUTPUT_DIM)
     Model.load_state_dict(torch.load(bert_model_path, map_location='cpu'))
     print("loading basic bert unit model from:  {}".format(bert_model_path))
     Model.eval()
@@ -111,6 +112,6 @@ def main():
 
 
 
-if __name__ == '__main__':
+def run_get_attribute_embedding():
     fixed(SEED_NUM)
-    main()
+    get_attribute_value_embedding()

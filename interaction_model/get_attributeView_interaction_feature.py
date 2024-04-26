@@ -1,5 +1,7 @@
 import os
 import logging
+
+from utils.utils import ent2attributeValues_gene, fixed
 logging.basicConfig(level=logging.ERROR)
 import pickle
 import torch
@@ -7,10 +9,10 @@ import torch.nn as nn
 import torch.nn.functional as F
 import numpy as np
 import time
-from read_data_func import *
-from Param import *
-from utils import *
-from dual_aggregation_func import *
+from interaction_model.read_data_func import *
+from interaction_model.Param import *
+from utils.utils import *
+from interaction_model.dual_aggregation_func import *
 
 
 
@@ -123,6 +125,6 @@ def main():
     pickle.dump(features, open(ATTRIBUTEVIEW_SIMILARITY_FEATURE_PATH, "wb"))
     print("save attribute-view similarity Feature in: ",ATTRIBUTEVIEW_SIMILARITY_FEATURE_PATH)
 
-if __name__ == '__main__':
+def get_attributeView_interaction_feature():
     fixed(SEED_NUM)
     main()

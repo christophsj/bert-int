@@ -1,7 +1,7 @@
 import pickle
 from transformers import LlamaTokenizer
 import logging
-from Param import *
+from basic_bert_unit.Param import *
 import pickle
 import numpy as np
 import re

@@ -10,9 +10,9 @@ import random
 import numpy as np
 import pickle
 import time
-from Param import *
-from utils import fixed,cos_sim_mat_generate,batch_topk
-from Basic_Bert_Unit_model import Basic_Bert_Unit_model
+from interaction_model.Param import *
+from utils.utils import fixed,cos_sim_mat_generate,batch_topk
+from utils.Basic_LM_Unit_model import Basic_LM_Unit_model
 
 
 def candidate_generate(ents1,ents2,ent_emb,candidate_topk = 50,bs = 32, cuda_num = 0):
@@ -50,7 +50,7 @@ def all_entity_pairs_gene(candidate_dict_list, ill_pair_list):
 
 
 
-def main():
+def get_entity_embedding():
     print("----------------get entity embedding--------------------")
     cuda_num = CUDA_NUM
     batch_size = 256
@@ -59,7 +59,7 @@ def main():
     # load basic bert unit model
     bert_model_path = BASIC_BERT_UNIT_MODEL_SAVE_PATH + BASIC_BERT_UNIT_MODEL_SAVE_PREFIX + "model_epoch_" \
                       + str(LOAD_BASIC_BERT_UNIT_MODEL_EPOCH_NUM) + '.p'
-    Model = Basic_Bert_Unit_model(768, BASIC_BERT_UNIT_MODEL_OUTPUT_DIM)
+    Model = Basic_LM_Unit_model(768, BASIC_BERT_UNIT_MODEL_OUTPUT_DIM)
     Model.load_state_dict(torch.load(bert_model_path, map_location='cpu'))
     print("loading basic bert unit model from:  {}".format(bert_model_path))
     Model.eval()
@@ -124,7 +124,7 @@ def main():
 
 if __name__ == '__main__':
     fixed(SEED_NUM)
-    main()
+    get_entity_embedding()
 
 
 

@@ -6,23 +6,19 @@ import torch.optim as optim
 import random
 
 
-from Read_data_func import read_data
-from Param import *
-from Basic_Bert_Unit_model import Basic_Bert_Unit_model
-from Batch_TrainData_Generator import Batch_TrainData_Generator
-from train_func import train
+from basic_bert_unit.Batch_TrainData_Generator import Batch_TrainData_Generator
+from utils.Basic_LM_Unit_model import Basic_LM_Unit_model
+from basic_bert_unit.Param import *
+from basic_bert_unit.Read_data_func import read_data
+from basic_bert_unit.train_func import train
 import numpy as np
 
-
-def fixed(seed):
-    random.seed(seed)
-    torch.manual_seed(seed)
-    torch.cuda.manual_seed_all(seed)
-    np.random.seed(seed)
+from utils.utils import fixed
 
 
 
-def main():
+def run_basic_model():
+    fixed(SEED_NUM)
     #read data
     print("start load data....")
     ent_ill, train_ill, test_ill, \
@@ -31,7 +27,7 @@ def main():
     print("---------------------------------------")
 
     #model
-    Model = Basic_Bert_Unit_model(MODEL_INPUT_DIM,MODEL_OUTPUT_DIM)
+    Model = Basic_LM_Unit_model(MODEL_INPUT_DIM,MODEL_OUTPUT_DIM)
     Model.cuda(CUDA_NUM)
 
     print("all entity ILLs num:",len(ent_ill))
@@ -71,5 +67,4 @@ def main():
 
 
 if __name__ == '__main__':
-    fixed(SEED_NUM)
-    main()
+    run_basic_model()
