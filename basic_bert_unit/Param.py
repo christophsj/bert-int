@@ -3,7 +3,7 @@ LANG = 'ja' #language 'zh'/'ja'/'fr'
 
 CUDA_NUM = 0 # used GPU num
 MODEL_INPUT_DIM  = 768
-MODEL_OUTPUT_DIM = 300 # dimension of basic bert unit output embedding
+MODEL_OUTPUT_DIM = 5120 # dimension of basic bert unit output embedding
 RANDOM_DIVIDE_ILL = False #if is True: get train/test_ILLs by random divide all entity ILLs, else: get train/test ILLs from file.
 TRAIN_ILL_RATE = 0.3 # (only work when RANDOM_DIVIDE_ILL == True) training data rate. Example: train ILL number: 15000 * 0.3 = 4500.
 

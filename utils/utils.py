@@ -15,7 +15,7 @@ class Model(Enum):
 
 llama_weights_path = 'Save_model/llama'
 bert_model = 'bert-base-multilingual-cased'
-model = Model.BERT
+model = Model.LLAMA
 
 
 def get_tokenizer():
