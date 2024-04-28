@@ -6,7 +6,7 @@ import torch.nn.functional as F
 import torch.optim as optim
 import numpy as np
 import time
-from utils import *
+from utils.utils import *
 import copy
 from torch.nn import init
 
