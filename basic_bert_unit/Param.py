@@ -1,5 +1,9 @@
-print("In params:")
-LANG = 'ja' #language 'zh'/'ja'/'fr'
+import os
+
+# Read language from environment variable, default to 'ja' if not set
+LANG = os.getenv("LANG", "ja")
+
+print(f"[INFO] Running experiment for language: {LANG}")
 
 CUDA_NUM = 0 # used GPU num
 MODEL_INPUT_DIM  = 768

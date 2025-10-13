@@ -2,7 +2,15 @@
 hyper-parameters:
 """
 CUDA_NUM = 0 #GPU num
-LANG = 'ja' #language 'zh'/'ja'/'fr'
+
+import os
+
+# Read language from environment variable, default to 'ja' if not set
+LANG = os.getenv("LANG", "ja")
+
+print(f"[INFO] Running experiment for language: {LANG}")
+
+
 ENTITY_NEIGH_MAX_NUM = 50 # max sampling neighbor num of entity
 ENTITY_ATTVALUE_MAX_NUM = 50 #max sampling attributeValue num of entity
 KERNEL_NUM = 21
