@@ -28,7 +28,7 @@ for lang in langs:
         print(f"[INFO] Starting Basic BERT Unit for {lang} ...")
         f.write(f"===== Basic BERT Unit ({lang}) =====\n")
         subprocess.run(
-            ["python", basic_bert_script],
+            ["python3", basic_bert_script],
             env=env,
             stdout=f,
             stderr=subprocess.STDOUT,
