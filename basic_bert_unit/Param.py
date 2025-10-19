@@ -29,7 +29,7 @@ DES_LIMIT_LENGTH = 128 # max length of description/name.
 
 
 DATA_PATH = r"../data/dbp15k/{}_en/".format(LANG)  #data path
-DES_DICT_PATH = r"../data/dbp15k/2016-10-des_dict" #description data path
+DES_DICT_PATH = r"../data/dbp15k/D_W_15K_V2_en/des_dict_wd_15k_v2.pkl" #description data path
 MODEL_SAVE_PATH = "../Save_model/"                 #model save path
 MODEL_SAVE_PREFIX = "DBP15K_{}en".format(LANG)
 

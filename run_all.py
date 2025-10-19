@@ -3,7 +3,7 @@ import subprocess
 from datetime import datetime
 
 # === CONFIG ===
-langs = ["zh", "ja", "fr"]
+langs = ["D_W_15K_V2", "D_Y_15K_V2"]
 log_dir = "logs"
 os.makedirs(log_dir, exist_ok=True)
 
